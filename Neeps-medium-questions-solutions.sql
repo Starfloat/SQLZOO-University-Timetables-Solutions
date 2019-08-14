@@ -35,6 +35,13 @@ HAVING COUNT(occurs.week) < 10
 --9.
 /*Identify those events which start at the same time as one of the co72010 lectures.
 */
+SELECT 
+FROM modle
+JOIN event ON (event.modle=modle.name)
+WHERE CONCAT(event.dow, event.tod) IN
+(SELECT CONCAT(event.dow, event.tod)
+FROM event
+WHERE event.modle = 'co72010')
 
 --10.
 /*How many members of staff have contact time which is greater than the average?
